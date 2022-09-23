@@ -8,6 +8,7 @@ let direction = { x: 0, y: 0 };
 let lastPaintTime = 0;
 let speed = 2;
 let snakeArr = [{ x: 16, y: 12 }];
+food = { x: 24, y: 6 };
 
 // Gmae functions
 
@@ -24,14 +25,25 @@ let main = (ctime) => {
 let gameEnigne = () => {
   // Part1 = Updating the snake array and food
   // Part2 = Display the snake and food
+  // For Displaying the snake
   board.innerHTML = "";
   snakeArr.forEach((e, index) => {
     snakeElement = document.createElement("div");
     snakeElement.style.gridRowStart = e.y;
     snakeElement.style.gridColumnStart = e.x;
-    snakeElement.classList.add("food");
+    snakeElement.classList.add("snakeBody");
+    if (index === 0) {
+      snakeElement.classList.add("snakeHead");
+    }
     board.appendChild(snakeElement);
   });
+
+  // For Displaying the food
+  foodElement = document.createElement("div");
+  foodElement.style.gridRowStart = food.y;
+  foodElement.style.gridColumnStart = food.x;
+  foodElement.classList.add("snakeFood");
+  board.appendChild(foodElement);
 };
 
 // main logic

@@ -25,10 +25,14 @@
     grid-template-columns: repeat(31, 1fr);
 }
 
-.head {
+.snakeHead {
     background-color: blue;
 }
 
-.food {
-    background-color: blueviolet;
+.snakeBody {
+    background-color: green;
+}
+
+.snakeFood {
+    background-color: purple;
 }
