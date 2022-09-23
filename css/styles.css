@@ -21,8 +21,8 @@
     width: 117.5vmin;
     height: 79.5vmin;
     display: grid;
-    grid-template-rows: repeat(22, 1fr);
-    grid-template-columns: repeat(29, 1fr);
+    grid-template-rows: repeat(23, 1fr);
+    grid-template-columns: repeat(31, 1fr);
 }
 
 .head {
