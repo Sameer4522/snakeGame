@@ -22,19 +22,21 @@
     display: grid;
     grid-template-rows: repeat(21, 1fr);
     grid-template-columns: repeat(31, 1fr);
+
 }
 
 .snakeHead {
-    background-color: green;
+    background: #3774AA;
     border: 2px solid black;
 }
 
 .snakeBody {
-    background-color: blue;
+    background: #3774AA;
     border: 2px solid black;
 }
 
 .snakeFood {
-    background-color: purple;
+    background-color: red;
     border: 2px solid black;
+    border-radius: 50px;
 }

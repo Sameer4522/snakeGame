@@ -6,7 +6,7 @@ const board = document.getElementById("board");
 
 let inputDir = { x: 0, y: 0 };
 let lastPaintTime = 0;
-let speed = 5;
+let speed = 6;
 let snakeArr = [{ x: 16, y: 12 }];
 let food = { x: 24, y: 6 };
 let score = 0;
@@ -34,12 +34,13 @@ let snakeCollide = (fullSnake) => {
     }
   }
 
-  //if you bump in wall
-  if (fullSnake[0].x >= 31 || fullSnake[0].x <= 0) {
-    return true;
-  }
-  //if you bumb into wall
-  else if (fullSnake[0].y >= 21 || fullSnake[0].y <= 0) {
+  //if you bump in wall & if you bumb into wall
+  if (
+    fullSnake[0].x >= 31 ||
+    fullSnake[0].x <= 0 ||
+    fullSnake[0].y >= 21 ||
+    fullSnake[0].y <= 0
+  ) {
     return true;
   }
 };
@@ -52,11 +53,11 @@ let gameEnigne = () => {
     inputDir = { x: 0, y: 0 };
     alert("Game Over. Press any key to play again!");
     snakeArr = [{ x: 16, y: 12 }];
-    musicSound.play().playbackRate = 0.5;
+    // musicSound.play()
     score = 0;
   }
 
-  // if snake eat food, score++ and regenerate the food
+  // if snake eat food, score++, regenerate the food & speed++
   if (snakeArr[0].y === food.y && snakeArr[0].x === food.x) {
     foodSound.play();
     snakeArr.unshift({
@@ -65,12 +66,14 @@ let gameEnigne = () => {
     });
 
     let a = 1;
-    let b = 18;
+    let b = 20;
 
     food = {
       x: Math.round(a + (b - a) * Math.random()),
       y: Math.round(a + (b - a) * Math.random()),
     };
+
+    speed = speed + 0.2;
   }
 
   //move the snake
@@ -111,24 +114,25 @@ window.addEventListener("keydown", (e) => {
   moveSound.play();
   switch (e.key) {
     case "ArrowUp":
+    case "w":
       inputDir.x = 0;
       inputDir.y = -1;
-      console.log("ArrowUp");
       break;
     case "ArrowDown":
+    case "s":
       inputDir.x = 0;
       inputDir.y = 1;
-      console.log("ArrowDown");
       break;
     case "ArrowRight":
+    case "d":
       inputDir.x = 1;
       inputDir.y = 0;
-      console.log("ArrowRight");
+      c;
       break;
     case "ArrowLeft":
+    case "a":
       inputDir.x = -1;
       inputDir.y = 0;
-      console.log("ArrowLeft");
       break;
 
     default:
