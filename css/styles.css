@@ -14,13 +14,14 @@
 }
 
 #board {
+    background-color: red;
     position: absolute;
-    left: 49.3vh;
+    left: 49.8vh;
     top: 10.8vh;
-    width: 117.5vmin;
+    width: 119vmin;
     height: 79.5vmin;
     display: grid;
-    grid-template-rows: repeat(23, 1fr);
+    grid-template-rows: repeat(21, 1fr);
     grid-template-columns: repeat(31, 1fr);
 }
 

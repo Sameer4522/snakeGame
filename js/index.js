@@ -6,7 +6,7 @@ const board = document.getElementById("board");
 
 let inputDir = { x: 0, y: 0 };
 let lastPaintTime = 0;
-let speed = 2;
+let speed = 5;
 let snakeArr = [{ x: 16, y: 12 }];
 let food = { x: 24, y: 6 };
 let score = 0;
@@ -23,6 +23,10 @@ let main = (ctime) => {
   }
 };
 
+let snakeCollide = (snakeArr) => {
+  return false;
+};
+
 let gameEnigne = () => {
   // Part1 = Updating the snake array and food
   if (snakeCollide(snakeArr)) {
@@ -30,9 +34,35 @@ let gameEnigne = () => {
     musicSound.pause();
     inputDir = { x: 0, y: 0 };
     alert("Game Over. Press any key to play again!");
+    snakeArr = [{ x: 16, y: 12 }];
     musicSound.play();
     score = 0;
   }
+
+  // if snake eat food, score++ and regenerate the food
+  if (snakeArr[0].y === food.y && snakeArr[0].x === food.x) {
+    foodSound.play();
+    snakeArr.unshift({
+      x: snakeArr[0].x + inputDir.x,
+      y: snakeArr[0].y + inputDir.y,
+    });
+
+    let a = 1;
+    let b = 18;
+
+    food = {
+      x: Math.round(a + (b - a) * Math.random()),
+      y: Math.round(a + (b - a) * Math.random()),
+    };
+  }
+
+  //move the snake
+  for (let i = snakeArr.length - 2; i >= 0; i--) {
+    snakeArr[i + 1] = { ...snakeArr[i] };
+  }
+
+  snakeArr[0].x += inputDir.x;
+  snakeArr[0].y += inputDir.y;
 
   // Part2 = Display the snake and food
   // For Displaying the snake
