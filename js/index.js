@@ -23,8 +23,25 @@ let main = (ctime) => {
   }
 };
 
-let snakeCollide = (snakeArr) => {
-  return false;
+let snakeCollide = (fullSnake) => {
+  // if you bump into your own body
+  for (let i = 1; i < snakeArr.length; i++) {
+    if (
+      fullSnake[i].x === fullSnake[0].x &&
+      fullSnake[i].y === fullSnake[0].y
+    ) {
+      return true;
+    }
+  }
+
+  //if you bump in wall
+  if (fullSnake[0].x >= 31 || fullSnake[0].x <= 0) {
+    return true;
+  }
+  //if you bumb into wall
+  else if (fullSnake[0].y >= 21 || fullSnake[0].y <= 0) {
+    return true;
+  }
 };
 
 let gameEnigne = () => {
@@ -35,7 +52,7 @@ let gameEnigne = () => {
     inputDir = { x: 0, y: 0 };
     alert("Game Over. Press any key to play again!");
     snakeArr = [{ x: 16, y: 12 }];
-    musicSound.play();
+    musicSound.play().playbackRate = 0.5;
     score = 0;
   }
 
