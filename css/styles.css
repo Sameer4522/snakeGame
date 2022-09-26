@@ -17,7 +17,6 @@
     position: absolute;
     left: 49.3vh;
     top: 10.8vh;
-    background: red;
     width: 117.5vmin;
     height: 79.5vmin;
     display: grid;
@@ -26,13 +25,16 @@
 }
 
 .snakeHead {
-    background-color: blue;
+    background-color: green;
+    border: 2px solid black;
 }
 
 .snakeBody {
-    background-color: green;
+    background-color: blue;
+    border: 2px solid black;
 }
 
 .snakeFood {
     background-color: purple;
+    border: 2px solid black;
 }
