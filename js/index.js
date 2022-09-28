@@ -11,7 +11,7 @@ let snakeArr = [{ x: 28, y: 18 }];
 let food = { x: 24, y: 6 };
 let score = 0;
 let currentScore = document.getElementById("currentScore");
-let biggestScore = 0;
+let highestScore = document.getElementById("highestScore");
 
 // Game functions
 
@@ -65,16 +65,22 @@ let gameEnigne = () => {
     foodSound.play();
 
     score++;
+
+    //Updating the highestscore
+    if (score > hiscoreval) {
+      hiscoreval = score;
+      localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
+      highestScore.innerHTML = "Highest Score = " + hiscoreval;
+    }
+
     currentScore.innerHTML = "Current Score = " + score;
 
     snakeArr.unshift({
       x: snakeArr[0].x + inputDir.x,
       y: snakeArr[0].y + inputDir.y,
     });
-
     let a = 1;
     let b = 20;
-
     food = {
       x: Math.round(a + (b - a) * Math.random()),
       y: Math.round(a + (b - a) * Math.random()),
@@ -82,16 +88,16 @@ let gameEnigne = () => {
 
     speed = speed + 0.2;
   }
-  currScoreValue = score;
-  if (currScoreValue >= biggestScore) {
-    biggestScore = currScoreValue;
-  } else if (biggestScore > currScoreValue) {
-    document.getElementById("highestScore").innerHTML =
-      "Highest Score = " + biggestScore;
-    window.localStorage.setItem("biggestScore", JSON.stringify(biggestScore));
+
+  //Updating the highestscore
+
+  let hiscore = localStorage.getItem("hiscore");
+  if (hiscore === null) {
+    hiscoreval = 0;
+    localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
   } else {
-    document.getElementById("highestScore").innerHTML =
-      "Highest Score = " + window.localStorage.getItem("biggestScore");
+    hiscoreval = JSON.parse(hiscore);
+    highestScore.innerHTML = "Highest Score = " + hiscore;
   }
 
   //move the snake
@@ -126,6 +132,7 @@ let gameEnigne = () => {
 };
 
 // main logic
+
 window.requestAnimationFrame(main);
 window.addEventListener("keydown", (e) => {
   inputDir = { x: 0, y: 1 }; // start the game
