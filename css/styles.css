@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'cutieMolly';
+    src: url(../fonts/Cutiemollydemo-2ORE3.ttf);
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -23,6 +28,26 @@
     grid-template-rows: repeat(21, 1fr);
     grid-template-columns: repeat(31, 1fr);
 
+}
+
+#highestScore {
+    font-family: "cutieMolly";
+    color: white;
+    position: absolute;
+    left: 60px;
+    top: 9em;
+    font-size: 2em;
+    text-shadow: 2px 5px black;
+}
+
+#currentScore {
+    font-family: "cutieMolly";
+    color: white;
+    position: absolute;
+    left: 60px;
+    top: 11em;
+    font-size: 2em;
+    text-shadow: 2px 5px black;
 }
 
 .snakeHead {

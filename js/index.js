@@ -7,11 +7,13 @@ const board = document.getElementById("board");
 let inputDir = { x: 0, y: 0 };
 let lastPaintTime = 0;
 let speed = 6;
-let snakeArr = [{ x: 16, y: 12 }];
+let snakeArr = [{ x: 28, y: 18 }];
 let food = { x: 24, y: 6 };
 let score = 0;
+let currentScore = document.getElementById("currentScore");
+let biggestScore = 0;
 
-// Gmae functions
+// Game functions
 
 let main = (ctime) => {
   window.requestAnimationFrame(main);
@@ -55,11 +57,16 @@ let gameEnigne = () => {
     snakeArr = [{ x: 16, y: 12 }];
     // musicSound.play()
     score = 0;
+    currentScore.innerHTML = "Current Score = 0";
   }
 
   // if snake eat food, score++, regenerate the food & speed++
   if (snakeArr[0].y === food.y && snakeArr[0].x === food.x) {
     foodSound.play();
+
+    score++;
+    currentScore.innerHTML = "Current Score = " + score;
+
     snakeArr.unshift({
       x: snakeArr[0].x + inputDir.x,
       y: snakeArr[0].y + inputDir.y,
@@ -74,6 +81,17 @@ let gameEnigne = () => {
     };
 
     speed = speed + 0.2;
+  }
+  currScoreValue = score;
+  if (currScoreValue >= biggestScore) {
+    biggestScore = currScoreValue;
+  } else if (biggestScore > currScoreValue) {
+    document.getElementById("highestScore").innerHTML =
+      "Highest Score = " + biggestScore;
+    window.localStorage.setItem("biggestScore", JSON.stringify(biggestScore));
+  } else {
+    document.getElementById("highestScore").innerHTML =
+      "Highest Score = " + window.localStorage.getItem("biggestScore");
   }
 
   //move the snake
@@ -127,7 +145,6 @@ window.addEventListener("keydown", (e) => {
     case "d":
       inputDir.x = 1;
       inputDir.y = 0;
-      c;
       break;
     case "ArrowLeft":
     case "a":
